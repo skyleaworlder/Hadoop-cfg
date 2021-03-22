@@ -31,21 +31,21 @@ elif [ ! $(ls $HADOOP_HOME | wc -l) -eq 10 ];then
     rm -r $HADOOP_HOME &&  tar -xzf /tmp/hadoop-2.10.1.tar.gz -C ~
 else
     # perfect
-    echo "[$1]: hadoop-2.10.1 exists."
+    echo "[$USER]: hadoop-2.10.1 exists."
 fi
 # check integrity
 if [ $(ls $HADOOP_HOME | wc -l) -ne 10 ];then
-    echo "fail to install hadoop correctly. script exits."
+    echo "[$USER]: fail to install hadoop correctly. script exits."
     exit 1
 fi
 
 # 1. make a backup about hadoop etc
-#   ~/hadoop_bak/:
+#   ~/.hadoop.bak.d/:
 #       - .bashrc: ~/.bashrc
 #       - hadoop/: ~/hadoop-2.10.1/etc/hadoop
 #       - hosts: /etc/hosts
 #       - sources.list: /etc/apt/sources.list
-BAK_PATH=~/hadoop_bak
+BAK_PATH=~/.hadoop.bak.d
 cp $HADOOP_HOME/etc/hadoop $BAK_PATH
 
 # 2. about env
@@ -70,12 +70,12 @@ HADOOP_HOME=~/hadoop-2.10.1
 while read LINE
 do
     if [ $LINE = "master" ];then
-        echo "[master]: master node do not need to distribute."
+        echo "[$USER]: --> master, master node do not need to distribute."
         echo
     else
-        echo "[$LINE]: $LINE begin to distribute hadoop..."
+        echo "[$USER]: --> $LINE, begin to distribute hadoop..."
         scp -r $HADOOP_HOME ubuntu@$LINE:~
-        echo "[$LINE]: $LINE finish distributing."
+        echo "[$USER]: --> $LINE, finish distributing."
         echo
     fi
 done < $HADOOP_HOME/etc/hadoop/slaves
