@@ -1,21 +1,25 @@
-# Hadoop-2.10.1 Config
+# :elephant: Hadoop-2.10.1 Config
 
-## Intro
+## :microphone: Intro
 
+Quick-Start scripts. *.sh about Hadoop 2.10.1 config on Ubuntu 20.04.
 To help, build a "simple hadoop cluster".
 
-## Env
+## :watermelon: Env
 
-* Time: 2021-03-22
-* ECS Provider: UCloud
-* OS: Ubuntu 20.04 LTS
-* Cfg: 2 vCPU, 4G RAM
-* Java jdk: 1.8.0_282
-* Hadoop: 2.10.1
+|Key|Value|
+|-|-|
+| Time | 2021-03-22 |
+| ECS Provider| UCloud |
+| OS | Ubuntu 20.04 LTS |
+| vCPU | 2 |
+| RAM | 4 GB |
+| Java Version | 1.8.0_282 |
+| Hadoop Version | 2.10.1 |
 
-## Usage
+## :hammer: Usage
 
-### 1. clone this repo
+### :one: clone this repo
 
 ```bash
 # on your PC
@@ -23,7 +27,7 @@ git clone https://github.com/skyleaworlder/Hadoop-cfg
 scp -r ./Hadoop-cfg [your-username]@[your-WAN-IP]:/home/[your-user]
 ```
 
-### 2. init
+### :two: init
 
 ```bash
 # both on your master and slaves
@@ -43,7 +47,7 @@ You can do a check job by executing the following instructions:
 * cat ~/.ssh/known_hosts
 * java -version
 
-### 3. slaves
+### :three: slaves
 
 ```bash
 # on your slave nodes
@@ -56,7 +60,7 @@ You can check it by:
 * tail -n 5 ~/.bashrc
 * echo $PATH
 
-### 4. master
+### :four: master
 
 ```bash
 # on your master node
@@ -76,7 +80,7 @@ and on **SLAVE** you can do:
 * ls ~/hadoop-2.10.1
 * cat ~/.ssh/known_hosts
 
-### 5. format and start
+### :five: format and start
 
 ```bash
 # on your master node
@@ -100,6 +104,6 @@ jps
 # the output contain "Jps" and "DataNode".
 ```
 
-## Notice
+## :mega: Notice
 
 Folder `etc` and its contents are "uploaded" to curricula group by Prof.Deng.
