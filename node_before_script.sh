@@ -13,8 +13,7 @@
 #   info:
 #       - change /etc/apt/sources.list
 #       - use 163 src
-#       - install java & hadoop
-#       - check integrity
+#       - install java
 
 # 0. create a folder to make a backup for some "etc" files:
 #   ~/hadoop_bak/:
@@ -94,31 +93,5 @@ if [ $(java -version 2>&1 | grep -c "openjdk version") -ge 1 ];then
     echo "jdk install successfully."
 else
     echo "fail to install jdk. script exits."
-    exit 1
-fi
-
-# 6. install hadoop
-# file "hadoop-2.10.1.tar.gz" "contains" folder "hadoop-2.10.1".
-# I use "wc" to check integrity of hadoop decompression.
-#
-# path "hadoop-2.10.1" should contain the following files:
-# bin(d) etc(d) include(d) lib(d) libexec(d) LICESE.txt(f) NOTICE.txt(f) README.txt(f) sbin(d) share(d)
-HADOOP_HOME=~/hadoop-2.10.1
-# if ~/hadoop-2.10.1 exist, delete its content first.
-if [ ! -d $HADOOP_HOME ];then
-    # hadoop-2.10.1 have not been downloaded
-    wget -P /tmp https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
-    tar -xzf /tmp/hadoop-2.10.1.tar.gz -C ~
-elif [ ! $(ls $HADOOP_HOME | wc -l) -eq 10 ];then
-    # downloaded, but not integrate
-    wget -P /tmp https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
-    rm -r $HADOOP_HOME &&  tar -xzf /tmp/hadoop-2.10.1.tar.gz -C ~
-else
-    # perfect
-    echo "[$1]: hadoop-2.10.1 exists."
-fi
-# check integrity
-if [ $(ls $HADOOP_HOME | wc -l) -ne 10 ];then
-    echo "fail to install hadoop correctly. script exits."
     exit 1
 fi
