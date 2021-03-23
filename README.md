@@ -1,9 +1,10 @@
-# :elephant: Hadoop-2.10.1 Config
+# :elephant: Hadoop-2.10.1 Auto-Config
 
 ## :microphone: Intro
 
 Quick-Start scripts. *.sh about Hadoop 2.10.1 config on Ubuntu 20.04.
-To help, build a "simple hadoop cluster".
+
+To help, build a "Simple Hadoop Cluster".
 
 ## :watermelon: Env
 
@@ -24,6 +25,7 @@ To help, build a "simple hadoop cluster".
 ```bash
 # on your PC
 git clone https://github.com/skyleaworlder/Hadoop-cfg
+# e.g. scp -r ./Hadoop-cfg ubuntu@101.23.120.133:/home/ubuntu
 scp -r ./Hadoop-cfg [your-username]@[your-WAN-IP]:/home/[your-user]
 ```
 
@@ -34,9 +36,9 @@ scp -r ./Hadoop-cfg [your-username]@[your-WAN-IP]:/home/[your-user]
 cd ~/Hadoop-cfg
 sudo chmod 744 node_before_script.sh
 
-# "master" or "slave1" / "slave2" / ... are recommended
-# as the first parameter of "node_before_script"
-./node_before_script.sh [machine-hostname]
+# In this script, you should input the value of some important variables.
+# e.g. master LAN-IP, the number of slaves, slave LAN-IPs...
+./node_before_script.sh
 ```
 
 You can do a check job by executing the following instructions:
